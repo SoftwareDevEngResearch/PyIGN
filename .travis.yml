@@ -6,7 +6,7 @@ matrix:
     - env: PYTHON="3.6"
 
 install:
-    - bash install -r test_pres_data.txt
+    - bash install -r requirements.txt
     
 script:
     - pytest -vv;
