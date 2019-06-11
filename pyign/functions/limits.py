@@ -1,7 +1,8 @@
 import numpy as np
 
-class PTLimitClass(object):
+class PTLimits(object):
     """The Pressure Transducer Limits determine when 'Safe' mode breaks.
+
         Attributes
         ----------
         pt : pressure transducers [7]
@@ -26,7 +27,6 @@ class PTLimitClass(object):
     @property
     def pt_limits(self):
         self._pt_limits = [self._pt_a, self._pt_b, self._pt_c, self._pt_d, self._pt_e, self._pt_f, self._pt_g]
-#        self.pt = np.asarray(self.pt)
         return self._pt_limits
     @property
     def pt_a(self):
@@ -73,8 +73,9 @@ class PTLimitClass(object):
         self._pt_g = pt_g  #Set Pressure Transducer g PT-CC-410 Limit
 
 
-class TCLimitClass(object):
+class TCLimits(object):
     """The Thermocouple Limits determine when 'Safe' mode breaks.
+
         Attributes
         ----------
         t : thermocouple [12]
@@ -109,7 +110,6 @@ class TCLimitClass(object):
     @property
     def tc_limits(self):
         self._tc_limits = [self._tc_a, self._tc_b, self._tc_c, self._tc_d, self._tc_e, self._tc_f, self._tc_g, self._tc_h, self._tc_i, self._tc_j, self._tc_k, self._tc_l]
-        #self.tc = np.asarray(self.tc)
         return self._tc_limits
     @property
     def tc_a(self):
@@ -186,8 +186,9 @@ class TCLimitClass(object):
         self._tc_l = tc_l  #Set Thermocouple l T-CC-430 Limit
 
 
-class LCLimitClass(object):
+class LCLimits(object):
     """The Load Cell Limits determine when 'Safe' mode breaks and propellant tank levels.
+
         Attributes
         ----------
         lc : load cell [3]
@@ -204,7 +205,6 @@ class LCLimitClass(object):
     @property
     def lc_limits(self):
         self._lc_limits = [self._lc_a, self._lc_b, self._lc_c]
-        #self.lc = np.asarray(self.lc)
         return self._lc_limits
     @property
     def lc_a(self):
@@ -226,27 +226,28 @@ class LCLimitClass(object):
     def lc_c(self,lc_c):
         self._lc_c = lc_c  #Set Load Cell a LC-CC-410 Limit
 
+
+
+
+
 if __name__ == '__main__':
     '''
-    lcl = LCLimitClass()
+    lcl = LCLimits()
     print(lcl.lc_limits)
     print(lcl.lc_a)
     lcl.lc_a = 1
     print(lcl.lc_a)
     print(lcl.lc_limits)
-
-
-    tcl = TCLimitClass()
+    tcl = TCLimits()
     print(tcl.tc_limits)
     print(tcl.tc_a)
     tcl.tc_a = 1
     print(tcl.tc_a)
     print(tcl.tc_limits)
-
-    '''
-    ptl = PTLimitClass()
+    ptl = PTLimits()
     print(ptl.pt_limits)
     print(ptl.pt_c)
     ptl.pt_c = 1
     print(ptl.pt_c)
     print(ptl.pt_limits)
+    '''
