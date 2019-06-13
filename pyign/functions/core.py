@@ -1,19 +1,20 @@
-"""Data file from sensors is read and formatted"""
+# third-party libraries
 import numpy as np
 
+
+# local imports
 from pyign.functions.limits import PTLimits as ptl
 from pyign.functions.limits import TCLimits as tcl
 from pyign.functions.limits import LCLimits as lcl
-
 from pyign.functions.states import ValveState as vst
 from pyign.functions.states import IgnitorState as ist
 from pyign.functions.states import AbortState as ast
 from pyign.functions.states import GoState as gst
 '''
+# local imports
 from limits import PTLimits as ptl
 from limits import TCLimits as tcl
 from limits import LCLimits as lcl
-
 from states import ValveState as vst
 from states import IgnitorState as ist
 from states import AbortState as ast
@@ -91,6 +92,26 @@ def getLCData(filename):
     except IOError:
         print ('Load Cell Input Data File Read Error', filename)
     return lc_input_data
+
+
+def getLSData(filename):
+    """Import Limit Switch data from as a .txt file and creates a numpy array of values of sensed data
+
+    Parameters
+    ----------
+    filename : .txt file
+        The first parameter.
+
+    Returns
+    -------
+    ls_input_data : numpy array
+        numpy array of sensed limit switch data
+    """
+    try:
+        ls_input_data = np.loadtxt(filename)
+    except IOError:
+        print ('Limit Switch Input Data File Read Error', filename)
+    return ls_input_data
 
 
 def getAbortState(self):
@@ -604,20 +625,19 @@ if __name__ == '__main__':
             ist.ignitor_state = 0
         return ist
     '''
-
+    ####
+    '''
     vst, ist, abt, gst, ptl, tcl, lcl = _init_system()
 
-    #print(getValveState(vst, ist, abt))
-    #print(getGOState(gst))
     setGOState(gst,'a',1)
     setGOState(gst,'b',1)
     setGOState(gst,'c',1)
-    #print(getGOState(gst))
     print('Ignitor State =', getIgnitorState(vst, ist, abt, gst))
     setIgnitorState(ist,1)
-    #print(getIgnitorState(vst, ist, abt, gst))
     print('Ignitor State =', getIgnitorState(vst, ist, abt, gst))
     print('')
+    '''
+    ####
     '''
     print(getAbortState(abt))
     setAbortState(abt,1)
@@ -625,17 +645,12 @@ if __name__ == '__main__':
     setAbortState(abt,0)
     print(abt.abort_state)
     print(getAbortState(abt))
-#    setAbortState(abt,1)
-#    print(getAbortState(abt))
-#    setAbortState(abt,0)
-#    print(abt.abort_state)
-    #nanny = 1
     print(getNanny(abt))
     setNanny(abt, 1)
     print(getNanny(abt))
     '''
     ####
-
+    '''
     setNanny(abt, 1)
     print('Nanny =', getNanny(abt))
     pt_data = [500, 500, 530, 500, 530, 500, 750]
@@ -647,7 +662,6 @@ if __name__ == '__main__':
     setValveState(vst, 'c', 1)
     setValveState(vst, 'g', 1)
     print('Abort State =', getAbortState(abt))
-    #print('Valve State =', getValveState(vst, ist, abt))
     print('Valve State =', getValveState(vst, ist, abt))
     print('')
     print('Abort State =', getAbortState(abt))
@@ -656,6 +670,8 @@ if __name__ == '__main__':
     print('Abort State =', getAbortState(abt))
     print('Valve State =', getValveState(vst, ist, abt))
     print('')
+    '''
+    ####
     '''
     pt_data = [500, 500, 530, 500, 530, 500, 750]
     tc_data = [82, 302, 72, 72, 72, 72, 302, 72, 72, 572, 572, 572]
@@ -730,14 +746,17 @@ if __name__ == '__main__':
     print(getValveState(vst, ist, abt))
     setValveState(vst, 'c', 0)
     '''
-#    print(b)
-#    b = getAbortState()
-#    print(b)
-#    print(setAbortState(0))
+    ####
+    '''
+    print(b)
+    b = getAbortState()
+    print(b)
+    print(setAbortState(0))
 
 
     print('Got it!')
-
+    '''
+    ####
     '''
     print('End')
     '''

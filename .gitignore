@@ -33,3 +33,14 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Compiled python modules.
+*.pyc
+*.pyo
+
+# Setuptools distribution folder.
+/dist/
+
+# Python egg metadata, regenerated from source files by setuptools.
+/*.egg-info
+/*.egg

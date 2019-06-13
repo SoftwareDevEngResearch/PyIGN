@@ -1,0 +1,7 @@
+include LICENSE
+include CHANGELOG.md
+include README.md
+include docs/example.rst
+include pyign/requirements.txt
+include pyign/raw/*.txt
+recursive-exclude *.py[co]

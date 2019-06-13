@@ -1,10 +1,36 @@
-language: python
-python:
-- "3.6"
+language: generic
+
+matrix:
+  include:
+    - os: linux
+      env: PYTHON="3.6"
 
 install:
-    - pip install -r requirements.txt
-    
-script:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda config --add channels conda-forge
+  - conda config --set channel_priority strict
+  - conda create --name test-environment
+  - source activate test-environment
+  - conda install python=${PYTHON}
+  - conda install pytest>=3.2.0
+  - conda install pytest-cov
+  - conda install coveralls
+  - conda install numpy
+  - conda info -a
+  - conda list
 
-    - pytest -vv;
+script:
+  - pytest -vv --cov=./;
+  
+after_success:
+  - coveralls
+  - coverage html

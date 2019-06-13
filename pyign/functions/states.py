@@ -1,3 +1,4 @@
+# states.py
 import numpy as np
 
 class ValveState(object):
@@ -246,7 +247,7 @@ class AbortState(object):
         nanny : Monitor System [1]
         """
     def __init__(self, abort_state=0, nanny=0):
-        self._abort_state = abort_state  #Initiallize 'Abort' State
+        self._abort_state = abort_state  #Initialize 'Abort' State
         self._nanny = nanny
 
     @property
@@ -308,10 +309,13 @@ class GoState(object):
 
 if __name__ == '__main__':
 
+    '''
     vlv = ValveState()
     lss = LimitSwitchState()
     ign = IgnitorState()
     abt = AbortState()
+    '''
+    ####
     '''
     print(vlv.valve_e)
     vlv.valve_a = 0
@@ -333,8 +337,6 @@ if __name__ == '__main__':
     vlv.valve_c = 1
     print(vlv.valve_c)
     print(vlv.valve_state)
-    #vlv.valve_state = 1
-    #print(vlv.valve_state)
     print(vlv.valve_e)
     vlv.valve_a = 0
     print(vlv.valve_a)
@@ -349,9 +351,12 @@ if __name__ == '__main__':
     ign.ignitor_state = 1
     print(ign.ignitor_state)
     '''
+    ####
+    '''
     gst = GoState()
     print(gst.go_states)
     print(gst.go_lox)
     gst.go_lox = 1
     print(gst.go_lox)
     print(gst.go_states)
+    '''

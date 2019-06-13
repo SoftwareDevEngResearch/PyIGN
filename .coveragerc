@@ -1,0 +1,10 @@
+[run]
+omit =
+    _version.py
+    pyign/__init__.py
+    pyign/functions/__init__.py
+    pyign/functions/__main__.py
+    pyign/functions/states.py
+    pyign/functions/limits.py
+    pyign/test_suite/__init__.py
+    setup.py
